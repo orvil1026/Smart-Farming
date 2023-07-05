@@ -1,0 +1,191 @@
+<html>
+{% extends 'base.html' %}
+{% block pagetitle %}
+Pest Detection
+{% endblock pagetitle %}
+
+{% block body %}
+<div>
+    <div class="container">
+
+        <div class="row mb-5 text-center text-white">
+            <div class="col-lg-10 mx-auto">
+                <h1 class="display-4" style="padding-top: 2%;font-weight: 400;color: rgb(4, 54, 4);"><b>🍀Crop Yield Prediction🍀</b></h1>
+<!--                <p class="lead" style="font-weight: 500;color: black;">Let AI Engine Will Help You To Detect Disease</p>-->
+            </div>
+        </div>
+
+        <div class="container mt-5">
+		<h1 class="mb-4">Enter Crop Parameters</h1>
+
+		<form action="/crop-yield-prediction-submit" method="POST" enctype="multipart/form-data">
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="inputN">N</label>
+					<input type="number" class="form-control" id="inputN" name="inputN" placeholder="Enter N">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputP">P</label>
+					<input type="number" class="form-control" id="inputP" name="inputP" placeholder="Enter P">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputK">K</label>
+					<input type="number" class="form-control" id="inputK" name="inputK" placeholder="Enter K">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="inputTemp">Temperature</label>
+					<input type="number" class="form-control" id="inputTemp" name="inputTemp" placeholder="Enter Temperature">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputHumidity">Humidity</label>
+					<input type="number" class="form-control" id="inputHumidity" name="inputHumidity" placeholder="Enter Humidity">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputPressure">Pressure</label>
+					<input type="number" step="0.1" class="form-control" id="inputPressure" name="inputPressure" placeholder="Enter Pressure">
+				</div>
+			</div>
+			<div class="form-group col-md-4">
+				<label for="inputArea">Area</label>
+				<input type="number" step="0.01" class="form-control" id="inputArea" name="inputArea" placeholder="Enter Area">
+			</div>
+            <div class="form-group col-md-4">
+				<label for="inputWindSpeed">Wind Speed</label>
+				<input type="number" step="0.01" class="form-control" id="inputWindSpeed" name="inputWindSpeed" placeholder="Enter WindSpeed">
+			</div>
+			<br>
+			<div class="input-group mb-4">
+			  <div class="input-group-prepend">
+				<label class="input-group-text" for="district-select">District</label>
+			  </div>
+			  <select id="district-select" name="district-select" class="custom-select">
+				<option value="" selected disabled>Choose a district</option>
+				<option value="AHMEDNAGAR">AHMEDNAGAR</option>
+				<option value="AKOLA">AKOLA</option>
+				<option value="AMRAVATI">AMRAVATI</option>
+				<option value="AURANGABAD">AURANGABAD</option>
+				<option value="BEED">BEED</option>
+				<option value="BHANDARA">BHANDARA</option>
+				<option value="BULDHANA">BULDHANA</option>
+				<option value="CHANDRAPUR">CHANDRAPUR</option>
+				<option value="DHULE">DHULE</option>
+				<option value="GADCHIROLI">GADCHIROLI</option>
+				<option value="GONDIA">GONDIA</option>
+				<option value="HINGOLI">HINGOLI</option>
+				<option value="JALGAON">JALGAON</option>
+				<option value="JALNA">JALNA</option>
+				<option value="KOLHAPUR">KOLHAPUR</option>
+				<option value="LATUR">LATUR</option>
+				<option value="NAGPUR">NAGPUR</option>
+				<option value="NANDED">NANDED</option>
+				<option value="NANDURBAR">NANDURBAR</option>
+				<option value="NASHIK">NASHIK</option>
+				<option value="OSMANABAD">OSMANABAD</option>
+				<option value="PALGHAR">PALGHAR</option>
+				<option value="PARBHANI">PARBHANI</option>
+				<option value="PUNE">PUNE</option>
+				<option value="RAIGAD">RAIGAD</option>
+				<option value="RATNAGIRI">RATNAGIRI</option>
+				<option value="SANGLI">SANGLI</option>
+				<option value="SATARA">SATARA</option>
+				<option value="SINDHUDURG">SINDHUDURG</option>
+				<option value="SOLAPUR">SOLAPUR</option>
+				<option value="THANE">THANE</option>
+				<option value="WARDHA">WARDHA</option>
+				<option value="WASHIM">WASHIM</option>
+				<option value="YAVATMAL">YAVATMAL</option>
+			  </select>
+			</div>
+
+			<div class="input-group mb-4">
+			  <div class="input-group-prepend">
+				<label class="input-group-text" for="season-select">Season</label>
+			  </div>
+			  <select id="season-select" name="season-select"  class="custom-select">
+				<option value="" selected disabled>Choose a district</option>
+				<option value="Kharif">Kharif</option>
+				<option value="Rabi">Rabi</option>
+				<option value="Summer">Summer</option>
+				<option value="Whole Year">Whole Year</option>
+			  </select>
+			</div>
+
+			<div class="input-group mb-3">
+			  <div class="input-group-prepend">
+				<label class="input-group-text" for="cropSelect">Crops</label>
+			  </div>
+			  <select class="custom-select" name="cropSelect" id="cropSelect">
+				<option selected>Choose a Crop</option>
+				<option value="Arhar/Tur">Arhar/Tur</option>
+				<option value="Bajra">Bajra</option>
+				<option value="Castor seed">Castor seed</option>
+				<option value="Cotton(lint)">Cotton(lint)</option>
+				<option value="Gram">Gram</option>
+				<option value="Groundnut">Groundnut</option>
+				<option value="Jowar">Jowar</option>
+				<option value="Linseed">Linseed</option>
+				<option value="Maize">Maize</option>
+				<option value="Moong(Green Gram)">Moong(Green Gram)</option>
+				<option value="Niger seed">Niger seed</option>
+				<option value="Other  Rabi pulses">Other Rabi pulses</option>
+				<option value="Other Cereals & Millets">Other Cereals & Millets</option>
+				<option value="Other Kharif pulses">Other Kharif pulses</option>
+				<option value="Ragi">Ragi</option>
+				<option value="Rapeseed &Mustard">Rapeseed &Mustard</option>
+				<option value="Rice">Rice</option>
+				<option value="Safflower">Safflower</option>
+				<option value="Sesamum">Sesamum</option>
+				<option value="Soyabean">Soyabean</option>
+				<option value="Sugarcane">Sugarcane</option>
+				<option value="Sunflower">Sunflower</option>
+				<option value="Tobacco">Tobacco</option>
+				<option value="Urad">Urad</option>
+				<option value="Wheat">Wheat</option>
+				<option value="other oilseeds">Other oilseeds</option>
+			  </select>
+			</div>
+
+			<div class="input-group mb-4">
+			  <div class="input-group-prepend">
+				<label class="input-group-text" for="soil-select">Soil</label>
+			  </div>
+			  <select id="soil-select" name="soil-select" class="custom-select">
+				<option value="" selected disabled>Choose a Soil Type</option>
+				<option value="chalky">chalky</option>
+				<option value="clay">clay</option>
+				<option value="loamy">loamy</option>
+				<option value="peaty">peaty</option>
+				  <option value="sandy">sandy</option>
+				  <option value="silt">silt</option>
+				  <option value="silty">silty</option>
+			  </select>
+			</div>
+
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+
+
+
+    </div>
+</div>
+
+<script>
+    const actualBtn = document.getElementById('actual-btn');
+
+    const fileChosen = document.getElementById('file-chosen');
+
+    actualBtn.addEventListener('change', function () {
+        fileChosen.textContent = this.files[0].name
+    })
+</script>
+
+<!-- Bootstrap JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock body %}

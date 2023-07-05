@@ -1,0 +1,78 @@
+<html>
+{% extends 'base.html' %}
+{% block pagetitle %}
+Pest Detection
+{% endblock pagetitle %}
+
+{% block body %}
+<div>
+    <div class="container">
+
+        <div class="row mb-5 text-center text-white">
+            <div class="col-lg-10 mx-auto">
+                <h1 class="display-4" style="padding-top: 2%;font-weight: 400;color: rgb(4, 54, 4);"><b>🍀Crop Prediction🍀</b></h1>
+<!--                <p class="lead" style="font-weight: 500;color: black;">Let AI Engine Will Help You To Detect Disease</p>-->
+            </div>
+        </div>
+
+        <div class="container mt-5">
+		<h1 class="mb-4">Enter Crop Parameters</h1>
+
+		<form action="/crop-prediction-submit" method="POST" enctype="multipart/form-data">
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="inputN">N</label>
+					<input type="number" class="form-control" id="inputN" name="inputN" placeholder="Enter N">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputP">P</label>
+					<input type="number" class="form-control" id="inputP" name="inputP" placeholder="Enter P">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputK">K</label>
+					<input type="number" class="form-control" id="inputK" name="inputK" placeholder="Enter K">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="inputTemp">Temperature</label>
+					<input type="number" class="form-control" id="inputTemp" name="inputTemp" placeholder="Enter Temperature">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputHumidity">Humidity</label>
+					<input type="number" class="form-control" id="inputHumidity" name="inputHumidity" placeholder="Enter Humidity">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputPh">pH</label>
+					<input type="number" step="0.1" class="form-control" id="inputPh" name="inputPh" placeholder="Enter pH">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputRainfall">Rainfall</label>
+				<input type="number" step="0.01" class="form-control" id="inputRainfall" name="inputRainfall" placeholder="Enter Rainfall">
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+
+
+
+    </div>
+</div>
+
+<script>
+    const actualBtn = document.getElementById('actual-btn');
+
+    const fileChosen = document.getElementById('file-chosen');
+
+    actualBtn.addEventListener('change', function () {
+        fileChosen.textContent = this.files[0].name
+    })
+</script>
+
+<!-- Bootstrap JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock body %}
